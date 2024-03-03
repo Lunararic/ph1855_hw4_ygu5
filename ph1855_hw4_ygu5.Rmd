@@ -7,5 +7,53 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(NSM3)
+```
+
+# Hollander et al. Nonparametric Statistical Methods 2014
+# P168 Q1
+```{r}
+# calculate p-value
+1-pnorm(1.622)
+```
+
+# P180 Q14
+```{r}
+# enter data
+X = c(.80, .83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, .73, 1.46)
+Y = c(1.15, .88, .90, .74, 1.21)
+# conduct test
+library(NSM3)
+MillerJack(X, Y)
+# p-value
+1-pnorm(2.781)
+```
+
+# P188 Q25
+```{r}
+# enter data
+Pre_ctrl =  c(1.3, 1.3, 5.8, 2.0, 2.7, 1.7, 1.8, 1.7, 1.8, 4.7)
+Pre_trt =   c(1.2, 1.2, 5.8, 0.3, 3.3, 2.2, 4.1, 1.2, 6.4, 1.8, 1.8, 5.2, 1.3)
+
+Post_ctrl = c(19.0, 40.0, 3.8, 6.5, 16.0, 13.0, 18.0, 2.6, 18.0, 5.8)
+Post_trt =  c(5.1, 7.2, 14.0, 4.0, 25.0, 15.0, 10.0, 7.6, 10.0, 10.0, 8.0, 40.0, 21.0)
+# conduct Lepage test
+pLepage(Pre_ctrl, Pre_trt)
+pLepage(Post_ctrl, Post_trt)
+# additional validation from Wilcoxon
+wilcox.test(Pre_ctrl, Pre_trt)
+wilcox.test(Post_ctrl, Post_trt)
+# additional validation from Anasari-Bradley
+pAnsBrad(Pre_ctrl, Pre_trt)
+pAnsBrad(Post_ctrl, Post_trt)
+# approximate Lepage p-value
+1-pchisq(2.976,2)
+1-pchisq(1.5642,2)
+```
+
+# P199 Q38
+```{r}
+2*(1-pnorm(1.739))
 ```
 
